@@ -5,6 +5,7 @@ public class main {
 		// TODO Auto-generated method stub
 		System.out.println("igsjdqhgshjdgfhjsgf");
  c toi le fdp
+ FACTION <3;
 	}
 
 }
