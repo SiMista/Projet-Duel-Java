@@ -8,31 +8,37 @@ public class Pioche {
 	private static final int taille=58;
 	private ArrayList<Integer> pioche;
 	
-	public static ArrayList<Integer> piocheAléatoire(int taille) {
-        ArrayList<Integer> intList = new ArrayList<Integer>();
+	public Pioche() {
+		ArrayList<Integer> pioche = new ArrayList<Integer>(taille);
+	}
+	
+	public static ArrayList<Integer> piocheAléatoire(Pioche pioche) {
         for (int i = 1; i <= taille; i++) {
-            intList.add(i);
+            pioche.add(i);
         }
  
         ArrayList<Integer> randomValues = new ArrayList<Integer>(taille);
         Random random = new Random();
         int pos = 0;
  
-        while (intList.size() > 0) {
-            pos = random.nextInt(intList.size());
-            randomValues.set(intList.size()-1, intList.get(pos));
-            intList.remove(pos);
+        while (pioche.size() > 0) {
+            pos = random.nextInt(pioche.size());
+            randomValues.set(pioche.size()-1, pioche.get(pos));
+            pioche.remove(pos);
         }
  
         return randomValues;
     }
 	
-	public static String toString(int taille, ArrayList<Integer> pioche) {
-		 int[] tab = new int[taille];
-	        for (int[] ligne : tab)
-	        	for(int i = 0; i < taille; i++) {
-	        		Arrays.fill(ligne, i);
-	        }
-	        return tab.toString();
+	public static String toString(int i, ArrayList<Integer> pioche) {
+		return String.valueOf(pioche.get(i));
 	}
+	
+
+	
+	public static void main(String args[]) {
+        int x = 5;
+        String str_x = String.valueOf(x);
+        System.out.println(str_x);
+    }
 }
