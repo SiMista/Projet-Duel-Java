@@ -1,18 +1,17 @@
 package duel;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Random;
+
 
 public class Pioche {
 	private static final int taille = 58;
 	private static ArrayList<Integer> pioche;
 
 	public Pioche() {
-		ArrayList<Integer> pioche = new ArrayList<Integer>(taille);
-	}
-	
-	public void initialiser() {
 		pioche = new ArrayList<Integer>(taille);
 	}
+	
 	
 	public ArrayList<Integer> mélange() {
 		for (int i = 1; i <= taille; i++) {
