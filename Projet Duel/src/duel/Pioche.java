@@ -5,19 +5,21 @@ import java.util.Random;
 
 
 public class Pioche {
-	private static final int taille = 58;
 	private static ArrayList<Integer> pioche;
+	private int taille;
 
 	public Pioche() {
-		pioche = new ArrayList<Integer>(taille);
+		taille = 58;
+		pioche = new ArrayList<Integer>();
+		for (int i = 0; i < taille; i++) {
+			pioche.add(i);
+		}
 	}
 	
 	
-	public ArrayList<Integer> mélange() {
-		for (int i = 1; i <= taille; i++) {
-			pioche.add(i);
-		}
+	public void mélange() {
 
+/*
 		ArrayList<Integer> randomValues = new ArrayList<Integer>(taille);
 		Random random = new Random();
 		int pos = 0;
@@ -28,12 +30,14 @@ public class Pioche {
 			pioche.remove(pos);
 		}
 		return randomValues;
+		*/
+		return;
 	}
 
-	public String toString(ArrayList<Integer> pioche) {
+	public String toString() {
 		String cartesDeLaPioche = "[";
 		for (int cartes : pioche) {
-			cartesDeLaPioche = String.valueOf(pioche.get(cartes)) + ", ";
+			cartesDeLaPioche += String.valueOf(pioche.get(cartes)) + ", ";
 		}
 		return cartesDeLaPioche;
 	}
