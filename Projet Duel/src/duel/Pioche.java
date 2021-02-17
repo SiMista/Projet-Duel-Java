@@ -3,57 +3,33 @@ package duel;
 import java.util.ArrayList;
 import java.util.Random;
 
-
 public class Pioche {
-	public static ArrayList<Integer> piocheliste;
+	// Je sais pas si ça doit être static ou pas ses attributs
+	private ArrayList<Integer> piocheliste; 
 	private int taille;
 
 	public Pioche() {
 		taille = 58;
 		piocheliste = new ArrayList<Integer>();
-		for (int i = 0; i < taille+2; i++) {
-			piocheliste.add(i);
+		for (int i = 0; i < taille + 2; i++) {
+			if (i > 1)
+				piocheliste.add(i);
 		}
-		piocheliste.remove(Integer.valueOf(0));
-		piocheliste.remove(Integer.valueOf(1));
+		mélange(piocheliste);
 	}
 	
-
-	//J'ai essayer des trucs avec la fonction mélange mais ça marche pas quoi
-	/*public ArrayList<Integer> mélange(Pioche pioche2) {
-		Pioche piocheAléatoire = new Pioche();
-		Random random = new Random();
-		int pos = 0;
-		while (pioche2.piocheliste.size() > 0) {
-			pos = random.nextInt(pioche2.piocheliste.size());
-			piocheAléatoire.piocheliste.set(pioche2.piocheliste.size() - 1, pioche2.piocheliste.get(pos));
-			pioche2.piocheliste.remove(pos);
-		}
-		return piocheAléatoire.piocheliste;
-	}*/
+	// La fonction mélange, si tu la comprends dis moi parce que jcomprends archi pas mais oklm
+	public void mélange(ArrayList<Integer> p) {
+	        Random random = new Random(System.currentTimeMillis());
+	        for (int i = 0; i < taille; ++i) {
+	            int j = (int) (random.nextDouble() * (taille - i) + i);
+	            int tmp = p.get(i);
+	            p.set(i , p.get(j));
+	            p.set(j, tmp);
+	        }
+	    return;
+	}
 	
-	
-	public void mélange() {
-		/*ArrayList<Integer> intList = new ArrayList<Integer>();
-        for (int i = 1; i <= taille; i++) {
-            intList.add(i);
-        }
- 
-        int[] randomValues = new int[intList.size()];
-        Random random = new Random();
-        int pos = 0;
- 
-        while (intList.size() > 0) {
-            pos = random.nextInt(intList.size());
-            randomValues[intList.size() - 1] = intList.get(pos);
-            intList.remove(pos);
-        }
- 
-        return randomValues;*/
-		return;
-    }
-	
-
 	public String toString() {
 		String cartesDeLaPioche = "[";
 		for (int cartes : piocheliste) {
@@ -63,5 +39,10 @@ public class Pioche {
 				cartesDeLaPioche += String.valueOf(piocheliste.get(cartes)) + "]";
 		}
 		return cartesDeLaPioche;
+	}
+
+	/* S/o Poitrenaud */
+	public ArrayList<Integer> getPiocheListe() { 
+		return piocheliste;
 	}
 }
