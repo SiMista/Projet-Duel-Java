@@ -20,7 +20,7 @@ public class Pioche {
 	
 	// La fonction mélange, si tu la comprends dis moi parce que jcomprends archi pas mais oklm
 	public void mélange(ArrayList<Integer> p) {
-	        Random random = new Random(System.currentTimeMillis());
+	        Random random = new Random();
 	        for (int i = 0; i < taille; ++i) {
 	            int j = (int) (random.nextDouble() * (taille - i) + i);
 	            int tmp = p.get(i);
@@ -44,5 +44,9 @@ public class Pioche {
 	/* S/o Poitrenaud */
 	public ArrayList<Integer> getPiocheListe() { 
 		return piocheliste;
+	}
+	
+	public int getCartesPioche(int i) { 
+		return piocheliste.get(i);
 	}
 }
