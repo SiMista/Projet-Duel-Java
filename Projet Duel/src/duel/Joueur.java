@@ -16,6 +16,8 @@ public class Joueur {
 		pioche = new Pioche();
 		pile_ascendante = 1;
 		pile_descendante = 60;
+		piocher(6);
+		
 	}
 
 	public void piocher(int nb) {

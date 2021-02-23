@@ -1,15 +1,13 @@
 package appli;
 
 import duel.Pioche;
+import duel.Joueur;
 
 public class Application {
 
 	public static void main(String[] args) {
-		Pioche pioche = new Pioche();
-		System.out.println(pioche.getPiocheListe().toString());
-		Pioche pioche2 = new Pioche(); 
-		System.out.println(pioche2.getPiocheListe().toString());
-		
+		Joueur un = new Joueur("NORD");
+		Joueur NORD = new Joueur();
 	}
 
 	// public void piocherCartes(int cartejouées);
