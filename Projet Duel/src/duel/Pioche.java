@@ -49,4 +49,8 @@ public class Pioche {
 	public int getCartesPioche(int i) { 
 		return piocheliste.get(i);
 	}
+	
+	public void retirerCartes(int i) {
+		piocheliste.remove(i);
+	}
 }

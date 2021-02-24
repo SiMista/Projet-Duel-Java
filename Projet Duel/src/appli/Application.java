@@ -6,8 +6,7 @@ import duel.Joueur;
 public class Application {
 
 	public static void main(String[] args) {
-		Joueur un = new Joueur("NORD");
-		Joueur NORD = new Joueur();
+		Joueur NORD = new Joueur("NORD");
 	}
 
 	// public void piocherCartes(int cartejouées);
