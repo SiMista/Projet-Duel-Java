@@ -6,15 +6,15 @@ public class Joueur {
 	private String nom;
 	private ArrayList<Integer> main;
 	private Pioche pioche;
-	private int pile_ascendante;
-	private int pile_descendante;
+	private int pileAscendante;
+	private int pileDescendante;
 
 	public Joueur(String nomDuJoueur) {
 		nom = nomDuJoueur;
 		main = new ArrayList<Integer>();
 		pioche = new Pioche();
-		pile_ascendante = 1;
-		pile_descendante = 60;
+		pileAscendante = 1;
+		pileDescendante = 60;
 		piocher(6);
 	}
 
@@ -42,8 +42,17 @@ public class Joueur {
 	}
 
 	public String toString() {
-		String message = "";
-		return message;
+		String cartesDeLaMain = "{ ";
+		for (int cartes : main) {
+			if (cartes < main.size() - 1)
+				cartesDeLaMain += String.valueOf(main.get(cartes)) + " ";
+			else
+				cartesDeLaMain += String.valueOf(main.get(cartes)) + "}";
+		}
+		return cartesDeLaMain;
 	}
 
+	public Pioche getPioche() {
+		return pioche;
+	}
 }

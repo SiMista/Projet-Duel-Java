@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Pioche {
-	// Je sais pas si ça doit être static ou pas ses attributs
+
 	private ArrayList<Integer> piocheliste; 
 	private int taille;
 
@@ -17,8 +17,7 @@ public class Pioche {
 		}
 		mélange(piocheliste);
 	}
-	
-	// La fonction mélange, si tu la comprends dis moi parce que jcomprends archi pas mais oklm
+
 	public void mélange(ArrayList<Integer> p) {
 	        Random random = new Random();
 	        for (int i = 0; i < taille; ++i) {
