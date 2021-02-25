@@ -19,11 +19,19 @@ public class Joueur {
 	}
 
 	public void piocher(int nb) {
-		for (int i = 0; i < nb; i++) {
-			main.add(i, pioche.getCartesPioche(i));
-			pioche.getPiocheListe().remove(i);
+		int i;
+		for (i = 0; i < nb; i++) {
+			if (pioche.getPiocheListe().size() > 0) {
+				main.add(i, (pioche.getCartesPioche(i)));
+				pioche.getPiocheListe().remove(i);
+				}
+			else 
+				break;	
 		}
-		return;
+		System.out.println(nb + " cartes posées, " + i + " cartes piochées");
+		
+		//Afficher la main du joueur qui vient de jouer (donc pas le bon vu qu'il faut afficher la main du joueur qui va jouer)
+		System.out.println("cartes " + nom + " " + toString());
 	}
 
 	public ArrayList<Integer> jouerCartes(ArrayList<Integer> carteEnMain) {
@@ -44,12 +52,19 @@ public class Joueur {
 	public String toString() {
 		String cartesDeLaMain = "{ ";
 		for (int cartes : main) {
-			if (cartes < main.size() - 1)
+			if (cartes < 6)
 				cartesDeLaMain += String.valueOf(main.get(cartes)) + " ";
 			else
 				cartesDeLaMain += String.valueOf(main.get(cartes)) + "}";
 		}
 		return cartesDeLaMain;
+	}
+	
+	//Fonction pour afficher les piles des joueurs
+	public String toString(Joueur joueur) {
+		String PilesJoueur = joueur.nom + " ^" +  Integer.toString(joueur.pileAscendante) +" v";
+		PilesJoueur += Integer.toString(joueur.pileDescendante)+ " (m" + joueur.main.size() + "p" + joueur.pioche.getPiocheListe().size() + ")";
+		return PilesJoueur;
 	}
 
 	public Pioche getPioche() {
