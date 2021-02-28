@@ -1,6 +1,7 @@
 package duel;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Joueur {
 	private String nom;
@@ -31,12 +32,14 @@ public class Joueur {
 		System.out.println(nb + " cartes posées, " + i + " cartes piochées");
 		
 		//Afficher la main du joueur qui vient de jouer (donc pas le bon vu qu'il faut afficher la main du joueur qui va jouer)
-		System.out.println("cartes " + nom + " " + toString());
+		System.out.println("cartes " + nom + " " + main.toString());
 	}
 
-	public ArrayList<Integer> jouerCartes(ArrayList<Integer> carteEnMain) {
-		ArrayList<Integer> joue = new ArrayList<Integer>();
-		return joue;
+	public void jouerCartes() {
+		Scanner s = new Scanner(System.in);
+		String coup = s.next();
+		return;
+		
 	}
 
 	public boolean gagnerPartie() {
@@ -61,7 +64,7 @@ public class Joueur {
 	}
 	
 	//Fonction pour afficher les piles des joueurs
-	public String toString(Joueur joueur) {
+	public String afficherPiles(Joueur joueur) {
 		String PilesJoueur = joueur.nom + " ^" +  Integer.toString(joueur.pileAscendante) +" v";
 		PilesJoueur += Integer.toString(joueur.pileDescendante)+ " (m" + joueur.main.size() + "p" + joueur.pioche.getPiocheListe().size() + ")";
 		return PilesJoueur;
