@@ -24,6 +24,9 @@ public class Joueur {
 		for (i = 0; i < nb; i++) {
 			if (pioche.getPiocheListe().size() > 0) {
 				main.add(i, (pioche.getCartesPioche(i)));
+				// Deux codes possibles, question de lisibilité soit la 1) en utilisant une méthode qu'on a fait dans Pioche
+				pioche.retirerCartes(i);
+				// Soit ce code en utilisant directe les méthodes de Java ici
 				pioche.getPiocheListe().remove(i);
 				}
 			else 
@@ -33,7 +36,7 @@ public class Joueur {
 		
 		// Afficher la main du joueur qui vient de jouer
 		// (donc pas le bon vu qu'il faut afficher la main du joueur qui va jouer)
-		System.out.println("cartes " + nom + " " + main.toString());
+		System.out.println("cartes " + nom + " " + afficherMain());
 	}
 
 	public void jouerCartes() {
@@ -53,13 +56,13 @@ public class Joueur {
 		return b;
 	}
 
-	public String toString() {
+	public String afficherMain() {
 		String cartesDeLaMain = "{ ";
-		for (int cartes : main) {
-			if (cartes < 6)
-				cartesDeLaMain += String.valueOf(main.get(cartes)) + " ";
+		for (int i = 0; i < main.size(); i++) {
+			if (i < main.size() - 1)
+				cartesDeLaMain += String.valueOf(main.get(i)) + " ";
 			else
-				cartesDeLaMain += String.valueOf(main.get(cartes)) + "}";
+				cartesDeLaMain += String.valueOf(main.get(i)) + " }";
 		}
 		return cartesDeLaMain;
 	}

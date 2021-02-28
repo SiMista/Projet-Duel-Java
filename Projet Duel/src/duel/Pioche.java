@@ -28,7 +28,8 @@ public class Pioche {
 	        }
 	    return;
 	}
-	
+	/* Du coup cette méthode elle sert pas vu qu'on peut l'utiliser à partir de Java comme ça 
+	 * System.out.println(NORD.getPioche().getPiocheListe().toString())
 	public String toString() {
 		String cartesDeLaPioche = "[";
 		for (int cartes : piocheliste) {
@@ -39,8 +40,8 @@ public class Pioche {
 		}
 		return cartesDeLaPioche;
 	}
+	*/
 
-	/* S/o Poitrenaud */
 	public ArrayList<Integer> getPiocheListe() { 
 		return piocheliste;
 	}
