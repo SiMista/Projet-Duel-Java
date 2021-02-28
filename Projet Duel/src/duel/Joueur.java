@@ -31,7 +31,8 @@ public class Joueur {
 		}
 		System.out.println(nb + " cartes posées, " + i + " cartes piochées");
 		
-		//Afficher la main du joueur qui vient de jouer (donc pas le bon vu qu'il faut afficher la main du joueur qui va jouer)
+		// Afficher la main du joueur qui vient de jouer
+		// (donc pas le bon vu qu'il faut afficher la main du joueur qui va jouer)
 		System.out.println("cartes " + nom + " " + main.toString());
 	}
 
