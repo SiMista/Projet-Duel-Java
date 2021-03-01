@@ -11,7 +11,7 @@ public class Joueur {
 	private int pileDescendante;
 
 	public Joueur(String nomDuJoueur) {
-		nom = String.format("%-4s", nomDuJoueur);
+		nom = nomDuJoueur;
 		main = new ArrayList<Integer>();
 		pioche = new Pioche();
 		pileAscendante = 1;
@@ -92,7 +92,7 @@ public class Joueur {
 	//Fonction pour afficher les piles des joueurs
 	public String afficherPiles() {
 		String pilesJoueur = "";
-		pilesJoueur += nom + " ^[" + String.format("%02d", pileAscendante) +"]";
+		pilesJoueur += String.format("%-4s", nom) + " ^[" + String.format("%02d", pileAscendante) +"]";
 		pilesJoueur += " v[" + String.format("%02d", pileDescendante) + "]";
 		pilesJoueur += " (m" + main.size() + "p" + pioche.getPiocheListe().size() + ")";
 		return pilesJoueur;
