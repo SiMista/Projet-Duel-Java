@@ -7,11 +7,11 @@ public class Joueur {
 	private String nom;
 	private ArrayList<Integer> main;
 	private Pioche pioche;
-	private int pileAscendante;
+	public int pileAscendante;
 	private int pileDescendante;
 
 	public Joueur(String nomDuJoueur) {
-		nom = nomDuJoueur;
+		nom = String.format("%-4s", nomDuJoueur);
 		main = new ArrayList<Integer>();
 		pioche = new Pioche();
 		pileAscendante = 1;
@@ -24,7 +24,7 @@ public class Joueur {
 		for (i = 0; i < nb; i++) {
 			if (pioche.getPiocheListe().size() > 0) {
 				main.add(i, (pioche.getCartesPioche(i)));
-				pioche.retirerCartes(i);
+				pioche.retirerCarte(i);
 				}
 			else 
 				break;	
@@ -90,10 +90,12 @@ public class Joueur {
 	}
 	
 	//Fonction pour afficher les piles des joueurs
-	public String afficherPiles(Joueur joueur) {
-		String PilesJoueur = joueur.nom + " ^" +  Integer.toString(joueur.pileAscendante) +" v";
-		PilesJoueur += Integer.toString(joueur.pileDescendante)+ " (m" + joueur.main.size() + "p" + joueur.pioche.getPiocheListe().size() + ")";
-		return PilesJoueur;
+	public String afficherPiles() {
+		String pilesJoueur = "";
+		pilesJoueur += nom + " ^[" + String.format("%02d", pileAscendante) +"]";
+		pilesJoueur += " v[" + String.format("%02d", pileDescendante) + "]";
+		pilesJoueur += " (m" + main.size() + "p" + pioche.getPiocheListe().size() + ")";
+		return pilesJoueur;
 	}
 
 	public Pioche getPioche() {

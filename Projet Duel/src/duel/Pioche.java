@@ -50,7 +50,7 @@ public class Pioche {
 		return piocheliste.get(i);
 	}
 	
-	public void retirerCartes(int i) {
+	public void retirerCarte(int i) {
 		piocheliste.remove(i);
 	}
 }
