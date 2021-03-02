@@ -7,7 +7,7 @@ public class Joueur {
 	private String nom;
 	private ArrayList<Integer> main;
 	private Pioche pioche;
-	public int pileAscendante;
+	private int pileAscendante;
 	private int pileDescendante;
 
 	public Joueur(String nomDuJoueur) {
