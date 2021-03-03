@@ -11,8 +11,7 @@ public class Application {
 		Joueur SUD = new Joueur("SUD");
 		System.out.println(NORD.afficherPiles());
 		System.out.println(SUD.afficherPiles());
-		
-		Règles.class.jouerCartes();
-		jouerCartes()
+		Règles.jouerCartes();
+
 	}	
 }

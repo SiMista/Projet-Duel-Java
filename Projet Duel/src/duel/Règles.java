@@ -1,9 +1,5 @@
 package duel;
 
-<<<<<<< Updated upstream
-public class Règles {
-	
-=======
 import java.util.Scanner;
 
 public class Règles {
@@ -13,7 +9,7 @@ public class Règles {
 		
 	}
 	
-	public void jouerCartes() {
+	public static void jouerCartes() {
 		Scanner sc = new Scanner(System.in);
 		String s;
 		System.out.print("> ");
@@ -25,13 +21,20 @@ public class Règles {
 		}
 	}
 
-	public void décompose(String s) {
-		/* une solution
+	public static void décompose(String s) {
+		// une solution
 		String[] tab = s.split("\\s+");
 		for (String mot : tab)
-			System.out.println(mot);
-*/
-		// une autre solution
+			if (mot.charAt(0) == '"') {
+			
+		}
+			else if (mot.charAt(0) == '^') {
+				
+		} 	else if (mot.charAt(0) == '^') {
+			
+		}
+		
+		
 		Scanner scs = new Scanner(s);
 		while (scs.hasNext()) {
 			String mot = scs.next();
@@ -42,6 +45,6 @@ public class Règles {
 				System.out.println("'" + mot + "' ne commence pas par un chiffre");
 		}
 		scs.close();
+		
 	}
->>>>>>> Stashed changes
 }

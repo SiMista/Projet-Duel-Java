@@ -1,7 +1,6 @@
 package duel;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Joueur {
 	private String nom;
