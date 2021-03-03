@@ -19,13 +19,13 @@ public class Pioche {
 	}
 
 	public void mélange(ArrayList<Integer> p) {
-	        Random random = new Random();
-	        for (int i = 0; i < taille; ++i) {
-	            int j = (int) (random.nextDouble() * (taille - i) + i);
-	            int tmp = p.get(i);
-	            p.set(i , p.get(j));
-	            p.set(j, tmp);
-	        }
+		Random random = new Random();
+	    for (int i = 0; i < taille; ++i) {
+	    	int j = (int) (random.nextDouble() * (taille - i) + i);
+	        int tmp = p.get(i);
+	        p.set(i , p.get(j));
+	        p.set(j, tmp);
+	    }
 	    return;
 	}
 	/* Du coup cette méthode elle sert pas vu qu'on peut l'utiliser à partir de Java comme ça 
