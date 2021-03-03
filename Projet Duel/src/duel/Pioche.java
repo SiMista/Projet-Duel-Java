@@ -41,16 +41,17 @@ public class Pioche {
 		return cartesDeLaPioche;
 	}
 	*/
-
-	public ArrayList<Integer> getPiocheListe() { 
-		return piocheliste;
+	
+	public int getCartes(int i) { 
+		return piocheliste.get(i);
 	}
 	
-	public int getCartesPioche(int i) { 
-		return piocheliste.get(i);
+	public int getTaille() {
+		return taille;
 	}
 	
 	public void retirerCarte(int i) {
 		piocheliste.remove(i);
+		taille--;
 	}
 }

@@ -22,8 +22,8 @@ public class Joueur {
 	public void piocher(int nb) {
 		int i;
 		for (i = 0; i < nb; i++) {
-			if (pioche.getPiocheListe().size() > 0) {
-				main.add(i, (pioche.getCartesPioche(i)));
+			if (pioche.getTaille() > 0) {
+				main.add(i, (pioche.getCartes(i)));
 				pioche.retirerCarte(i);
 				}
 			else 
@@ -94,11 +94,7 @@ public class Joueur {
 		String pilesJoueur = "";
 		pilesJoueur += String.format("%-4s", nom) + " ^[" + String.format("%02d", pileAscendante) +"]";
 		pilesJoueur += " v[" + String.format("%02d", pileDescendante) + "]";
-		pilesJoueur += " (m" + main.size() + "p" + pioche.getPiocheListe().size() + ")";
+		pilesJoueur += " (m" + main.size() + "p" + pioche.getTaille() + ")";
 		return pilesJoueur;
-	}
-
-	public Pioche getPioche() {
-		return pioche;
 	}
 }
