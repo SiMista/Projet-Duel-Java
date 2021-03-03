@@ -12,29 +12,37 @@ public class Règles {
 	public static void jouerCartes() {
 		Scanner sc = new Scanner(System.in);
 		String s;
+		Boolean valide;
 		System.out.print("> ");
 		s = sc.nextLine();
 		while (!s.equals("fin")) {
-			décompose(s);
+			valide = décompose(s);
+			if (valide) 
 			System.out.print("> ");
+			else System.out.print("#> ");
 			s = sc.nextLine();
 		}
 	}
 
-	public static void décompose(String s) {
+	public static boolean décompose(String s) {
 		// une solution
 		String[] tab = s.split("\\s+");
-		for (String mot : tab)
-			if (mot.charAt(0) == '"') {
-			
+		if (vérifSaisie(tab)) {
+			for (String mot : tab) {
+				if (mot.charAt(2) == '^') {
+			// poser sur la pile ascendante
+				}
+				else if (mot.charAt(2) == 'v') {
+			// poser sur la pile descendante
+				}
+			}
+			return true;
 		}
-			else if (mot.charAt(0) == '^') {
-				
-		} 	else if (mot.charAt(0) == '^') {
-			
+		else {
+			return false;
 		}
 		
-		
+		/*
 		Scanner scs = new Scanner(s);
 		while (scs.hasNext()) {
 			String mot = scs.next();
@@ -45,6 +53,14 @@ public class Règles {
 				System.out.println("'" + mot + "' ne commence pas par un chiffre");
 		}
 		scs.close();
-		
+		*/
+	}
+	
+	public static boolean vérifSaisie(String[] tab) {
+		boolean erreur = false;
+		for (String mot : tab) {
+			//vérifier les règles de pose
+		}
+		return erreur;
 	}
 }
