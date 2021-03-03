@@ -51,9 +51,9 @@ public class Joueur {
 		String cartesDeLaMain = "{ ";
 		for (int i = 0; i < main.size(); i++) {
 			if (i < main.size() - 1)
-				cartesDeLaMain += String.valueOf(main.get(i)) + " ";
+				cartesDeLaMain += String.format("%02d", main.get(i)) + " ";
 			else
-				cartesDeLaMain += String.valueOf(main.get(i)) + " }";
+				cartesDeLaMain += main.get(i) + " }";
 		}
 		return cartesDeLaMain;
 	}
@@ -66,4 +66,32 @@ public class Joueur {
 		pilesJoueur += " (m" + main.size() + "p" + pioche.getTaille() + ")";
 		return pilesJoueur;
 	}
+	
+	public void retirerMain(int i) {
+		main.remove(i);
+	}
+	
+	public Pioche getPioche() {
+		return pioche;
+	}
+	
+	public ArrayList<Integer> getMain() {
+		return main;
+	}
+	
+	public int getPileAscendante() {
+		return pileAscendante;
+	}
+	
+	public int getPileDescendante() {
+		return pileDescendante;
+	}
+	public int setPileAscendante(int i) {
+		return pileAscendante;
+	}
+	
+	public int setPileDescendante(int i) {
+		return pileDescendante;
+	}
+	
 }

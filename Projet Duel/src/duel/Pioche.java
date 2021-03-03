@@ -50,6 +50,10 @@ public class Pioche {
 		return taille;
 	}
 	
+	public ArrayList<Integer> getPiocheListe(){
+		return piocheliste;
+	}
+	
 	public void retirerCarte(int i) {
 		piocheliste.remove(i);
 		taille--;
