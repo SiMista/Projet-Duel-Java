@@ -1,6 +1,7 @@
 package appli;
 
 import duel.Pioche;
+import duel.Règles;
 import duel.Joueur;
 
 public class Application {
@@ -10,5 +11,8 @@ public class Application {
 		Joueur SUD = new Joueur("SUD");
 		System.out.println(NORD.afficherPiles());
 		System.out.println(SUD.afficherPiles());
+		
+		Règles.class.jouerCartes();
+		jouerCartes()
 	}	
 }
