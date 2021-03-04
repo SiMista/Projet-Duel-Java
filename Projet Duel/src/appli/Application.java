@@ -1,7 +1,7 @@
 package appli;
 
 import duel.Pioche;
-import duel.Règles;
+import duel.Partie;
 import duel.Joueur;
 
 import java.util.Scanner;
@@ -20,7 +20,7 @@ public class Application {
 		System.out.print("> ");
 		s = sc.nextLine();
 		while (!s.equals("fin")) {
-			valide = Règles.décompose(s, NORD);
+			valide = Partie.décomposeCartes(s, NORD, SUD);
 			if (valide)
 				System.out.print("> ");
 			else

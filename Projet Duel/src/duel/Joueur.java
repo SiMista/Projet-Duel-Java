@@ -67,8 +67,12 @@ public class Joueur {
 		return pilesJoueur;
 	}
 	
-	public void retirerMain(int i) {
-		main.remove(i);
+	public void retirerMain(int carte) {
+		for (int i : main) {
+			if(i == carte)
+				main.remove(i);
+		}
+		
 	}
 	
 	public Pioche getPioche() {
