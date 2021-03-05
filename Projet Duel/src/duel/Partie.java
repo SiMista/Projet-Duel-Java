@@ -49,7 +49,6 @@ public class Partie {
 		return erreur;
 	}
 
-
 	public static boolean conditionPileAscendante(String entrée, int carte, Joueur j, Joueur jAdv) {
 		boolean erreur = false;
 		if (entrée.length() == 3)
@@ -61,7 +60,7 @@ public class Partie {
 			erreur = false;
 		return erreur;
 	}
-	
+
 	public static boolean conditionPileDescendante(String entrée, int carte, Joueur j, Joueur jAdv) {
 		boolean erreur = false;
 		if (entrée.length() == 3)
@@ -98,21 +97,27 @@ public class Partie {
 		boolean erreur = true;
 		int carte = 0;
 		for (String entrée : tab) {
-			if (!Character.isDigit(entrée.charAt(0)) && !Character.isDigit(entrée.charAt(1))) // Vérifie si c'est un
-				// nombre
-				return erreur = false;
-			carte = Integer.valueOf(entrée.substring(0, 2)); // La variable locale prend la valeur de chaque nombre du
-																// tab[]
-			/* for (int carteMain : j.getMain()) // Vérifie si les cartes sont dans la main du joueur
-				for (int i = 0; i < tab.length; ++i)
-					if (carteMain != carte)
-						erreur = false; // IL FAUT COMPARER TOUTES LES CARTES ET PAS QU'UNE ! */
 
-			if (entrée.length() > 4) // Vérifie que chaque 'entrée' ne fait pas plus de 4 caractères
+			// Vérifie si c'est un nombre
+			if (!Character.isDigit(entrée.charAt(0)) && !Character.isDigit(entrée.charAt(1)))
+				return erreur = false;
+			carte = Integer.valueOf(entrée.substring(0, 2)); // La variable prend la valeur de chaque entrée
+
+			// Vérifie si les cartes sont dans la main du joueur
+			for (int carteMain : j.getMain()) {
+				erreur = false;
+				if (carteMain == carte) {
+					erreur = true;
+					break;
+				}
+			}
+
+			// Vérifie que chaque 'entrée' ne fait pas plus de 4 caractères
+			if (entrée.length() > 4)
 				erreur = false;
 
-			if (!((conditionPileAdverseAsc(entrée, carte, j, jAdv)) // Vérifie que l'entrée comporte les caractère des
-																	// piles
+			// Vérifie que les entrées comporte les caractère des piles
+			if (!((conditionPileAdverseAsc(entrée, carte, j, jAdv))
 					|| (conditionPileAdverseDesc(entrée, carte, j, jAdv))
 					|| (conditionPileAscendante(entrée, carte, j, jAdv))
 					|| (conditionPileDescendante(entrée, carte, j, jAdv))))

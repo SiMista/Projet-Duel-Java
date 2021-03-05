@@ -65,13 +65,10 @@ public class Joueur {
 	}
 
 	public void retirerMain(int carte) {
-		int tmp = 0;
-		for (int i : main) {
-			if (4 == carte)
-				tmp = i;
+		for (int i = 0; i < main.size(); i++) {
+			if (main.get(i) == carte)
+			main.remove(i);
 		}
-		if (tmp != 0)
-			main.remove(tmp);
 	}
 
 	public Pioche getPioche() {

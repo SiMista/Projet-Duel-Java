@@ -11,10 +11,12 @@ public class Application {
 	public static void main(String[] args) {
 		Joueur NORD = new Joueur("NORD");
 		Joueur SUD = new Joueur("SUD");
-		System.out.println(NORD.afficherPiles());
 		Scanner sc = new Scanner(System.in);
 		String s;
 		Boolean valide;
+		
+		System.out.println(NORD.afficherMain());
+		System.out.println(NORD.afficherPiles());
 		System.out.print("> ");
 		s = sc.nextLine();
 		while (!s.equals("fin")) {
