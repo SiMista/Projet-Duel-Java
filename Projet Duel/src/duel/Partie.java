@@ -10,7 +10,7 @@ public class Partie {
 		int carte = 0;
 		if (vérifSaisie(tab, j, jAdv)) {
 			for (String entrée : tab) {
-				carte = Integer.valueOf(entrée.substring(0, 1));
+				carte = Integer.valueOf(entrée.substring(0, 2));
 				if (conditionPileAdverseAsc(entrée, carte, j, jAdv))
 					poserPileAdverseAsc(carte, j, jAdv);
 				else if (conditionPileAdverseDesc(entrée, carte, j, jAdv))
@@ -101,7 +101,7 @@ public class Partie {
 			if (!Character.isDigit(entrée.charAt(0)) && !Character.isDigit(entrée.charAt(1))) // Vérifie si c'est un
 				// nombre
 				return erreur = false;
-			carte = Integer.valueOf(entrée.substring(0, 1)); // La variable locale prend la valeur de chaque nombre du
+			carte = Integer.valueOf(entrée.substring(0, 2)); // La variable locale prend la valeur de chaque nombre du
 																// tab[]
 			/* for (int carteMain : j.getMain()) // Vérifie si les cartes sont dans la main du joueur
 				for (int i = 0; i < tab.length; ++i)
