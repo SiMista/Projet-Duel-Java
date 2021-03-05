@@ -32,7 +32,7 @@ public class Joueur {
 		
 		// Afficher la main du joueur qui vient de jouer
 		// (donc pas le bon vu qu'il faut afficher la main du joueur qui va jouer)
-		System.out.println("cartes " + nom + " " + afficherMain());
+		System.out.println(afficherMain());
 	}
 
 
@@ -48,7 +48,7 @@ public class Joueur {
 	}
 
 	public String afficherMain() {
-		String cartesDeLaMain = "{ ";
+		String cartesDeLaMain = "cartes " + nom + " { ";
 		for (int i = 0; i < main.size(); i++) {
 			if (i < main.size() - 1)
 				cartesDeLaMain += String.format("%02d", main.get(i)) + " ";
@@ -72,7 +72,6 @@ public class Joueur {
 			if(i == carte)
 				main.remove(i);
 		}
-		
 	}
 	
 	public Pioche getPioche() {
@@ -90,12 +89,12 @@ public class Joueur {
 	public int getPileDescendante() {
 		return pileDescendante;
 	}
-	public int setPileAscendante(int i) {
-		return pileAscendante;
+	public void setPileAscendante(int i) {
+		pileAscendante = i;
 	}
 	
-	public int setPileDescendante(int i) {
-		return pileDescendante;
+	public void setPileDescendante(int i) {
+		pileDescendante = i;
 	}
 	
 }
