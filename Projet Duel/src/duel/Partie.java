@@ -3,13 +3,16 @@ package duel;
 import java.util.Scanner;
 
 public class Partie {
-	private boolean tourDeNord = true;
-
+	
 	public static boolean décomposeCartes(String s, Joueur j, Joueur jAdv) {
 		String[] tab = s.split("\\s+");
 		int carte = 0;
 		if (vérifSaisie(tab, j, jAdv)) {
 			for (String entrée : tab) {
+				if (tab.length < 2) {
+					jAdv.setPartieGagnée();
+					partieFinie(j, jAdv);
+				}
 				carte = Integer.valueOf(entrée.substring(0, 2));
 				if (conditionPileAdverseAsc(entrée, carte, j, jAdv))
 					poserPileAdverseAsc(carte, j, jAdv);
@@ -125,4 +128,18 @@ public class Partie {
 		}
 		return erreur;
 	}
+		
+	
+	public static boolean partieFinie(Joueur j1, Joueur j2) {
+		if(j1.getGagner() || j2.getPerdre()) {
+			return true;
+		}
+		else 
+			if (j1.getPerdre() || j2.getGagner()) {
+				return true;		
+		}
+			else 
+				return false;
+		}
 }
+

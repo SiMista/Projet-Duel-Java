@@ -8,6 +8,8 @@ public class Joueur {
 	private Pioche pioche;
 	private int pileAscendante;
 	private int pileDescendante;
+	private boolean gagner = false;
+	private boolean perdre = false;
 
 	public Joueur(String nomDuJoueur) {
 		nom = nomDuJoueur;
@@ -33,15 +35,21 @@ public class Joueur {
 		// (donc pas le bon vu qu'il faut afficher la main du joueur qui va jouer)
 		System.out.println(afficherMain());
 	}
-
-	public boolean gagnerPartie() {
-		boolean b = false;
-		return b;
+	
+	public boolean getGagner() {
+		return gagner;
+	}
+	
+	public boolean getPerdre() {
+		return perdre;
 	}
 
-	public boolean perdrePartie() {
-		boolean b = false;
-		return b;
+	public void setPartieGagnée() {
+		gagner = true;
+	}
+
+	public void setPartiePerdue() {
+		perdre = true;
 	}
 
 	public String afficherMain() {
@@ -93,6 +101,10 @@ public class Joueur {
 
 	public void setPileDescendante(int i) {
 		pileDescendante = i;
+	}
+	
+	public String getNom() {
+		return nom;
 	}
 
 }
