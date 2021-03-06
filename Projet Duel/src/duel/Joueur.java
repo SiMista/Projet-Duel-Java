@@ -9,7 +9,6 @@ public class Joueur {
 	private int pileAscendante;
 	private int pileDescendante;
 	private boolean gagner = false;
-	private boolean perdre = false;
 
 	public Joueur(String nomDuJoueur) {
 		nom = nomDuJoueur;
@@ -36,21 +35,36 @@ public class Joueur {
 		System.out.println(afficherMain());
 	}
 	
-	public boolean getGagner() {
-		return gagner;
+	public void piocher(int posée, boolean b) {
+		int i;
+		if (b) {
+			for (i = 0; i < posée; i++) {
+				if (pioche.getTaille() > 0) {
+					main.add(i, (pioche.getCartes(i)));
+					pioche.retirerCarte(i);
+				}
+			}
+		}
+		else {
+				for (i = 0; i < 2; i++) {
+					if (pioche.getTaille() > 0) {
+						main.add(i, (pioche.getCartes(i)));
+						pioche.retirerCarte(i);
+					}
+				}
+		}
+		System.out.println(posée + " cartes posées, " + i + " cartes piochées");
+
 	}
 	
-	public boolean getPerdre() {
-		return perdre;
+	public boolean getGagner() {
+		return gagner;
 	}
 
 	public void setPartieGagnée() {
 		gagner = true;
 	}
 
-	public void setPartiePerdue() {
-		perdre = true;
-	}
 
 	public String afficherMain() {
 		String cartesDeLaMain = "cartes " + nom + " { ";

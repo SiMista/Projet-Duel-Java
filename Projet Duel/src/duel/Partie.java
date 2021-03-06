@@ -1,28 +1,40 @@
 package duel;
 
+import duel.Pioche;
 import java.util.Scanner;
+
 
 public class Partie {
 	
 	public static boolean décomposeCartes(String s, Joueur j, Joueur jAdv) {
 		String[] tab = s.split("\\s+");
 		int carte = 0;
+		boolean poséSurPileAdverse = false;
 		if (vérifSaisie(tab, j, jAdv)) {
 			for (String entrée : tab) {
 				if (tab.length < 2) {
 					jAdv.setPartieGagnée();
 					partieFinie(j, jAdv);
 				}
+				if (j.getMain().size() == 0 && j.getPioche().getTaille() == 0) {
+					j.setPartieGagnée();
+					partieFinie(j, jAdv);
+				}
 				carte = Integer.valueOf(entrée.substring(0, 2));
-				if (conditionPileAdverseAsc(entrée, carte, j, jAdv))
+				if (conditionPileAdverseAsc(entrée, carte, j, jAdv) && !poséSurPileAdverse) {
 					poserPileAdverseAsc(carte, j, jAdv);
-				else if (conditionPileAdverseDesc(entrée, carte, j, jAdv))
+					poséSurPileAdverse = true;
+				}
+				else if (conditionPileAdverseDesc(entrée, carte, j, jAdv) && !poséSurPileAdverse) {
 					poserPileAdverseDesc(carte, j, jAdv);
+					poséSurPileAdverse = true;
+				}
 				else if (conditionPileAscendante(entrée, carte, j, jAdv))
 					poserPileAscendante(carte, j);
 				else if (conditionPileDescendante(entrée, carte, j, jAdv))
 					poserPileDescendante(carte, j);
 			}
+			j.piocher(tab.length, poséSurPileAdverse);
 			return true;
 		} else
 			return false;
@@ -116,7 +128,7 @@ public class Partie {
 			}
 
 			// Vérifie que chaque 'entrée' ne fait pas plus de 4 caractères
-			if (entrée.length() > 4)
+			if (entrée.length() < 3 || entrée.length() > 4)
 				erreur = false;
 
 			// Vérifie que les entrées comporte les caractère des piles
@@ -131,15 +143,14 @@ public class Partie {
 		
 	
 	public static boolean partieFinie(Joueur j1, Joueur j2) {
-		if(j1.getGagner() || j2.getPerdre()) {
+		if(j1.getGagner()) {
 			return true;
 		}
 		else 
-			if (j1.getPerdre() || j2.getGagner()) {
+			if (j2.getGagner()) {
 				return true;		
 		}
 			else 
 				return false;
 		}
 }
-
