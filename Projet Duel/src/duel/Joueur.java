@@ -16,10 +16,10 @@ public class Joueur {
 		pioche = new Pioche();
 		pileAscendante = 1;
 		pileDescendante = 60;
-		piocher(6);
+		piocheInitiale(6);
 	}
 
-	public void piocher(int nb) {
+	public void piocheInitiale(int nb) {
 		int i;
 		for (i = 0; i < nb; i++) {
 			if (pioche.getTaille() > 0) {
