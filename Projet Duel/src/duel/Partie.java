@@ -16,6 +16,10 @@ public class Partie {
 					jAdv.setPartieGagnée();
 					partieFinie(j, jAdv);
 				}
+				if (j.getMain().size() == 1 && j.getPioche().getTaille() == 0) {
+					jAdv.setPartieGagnée();
+					partieFinie(j, jAdv);
+				}
 				if (j.getMain().size() == 0 && j.getPioche().getTaille() == 0) {
 					j.setPartieGagnée();
 					partieFinie(j, jAdv);
@@ -43,7 +47,7 @@ public class Partie {
 	public static boolean conditionPileAdverseAsc(String entrée, int carte, Joueur j, Joueur jAdv) {
 		boolean erreur = false;
 		if (entrée.length() == 4)
-			if ((entrée.charAt(3) == '’') && (entrée.charAt(2) == '^') && (carte < jAdv.getPileAscendante()))
+			if ((entrée.charAt(2) == '^') && (entrée.charAt(3) == '’') && (carte < jAdv.getPileAscendante()))
 				erreur = true;
 			else
 				erreur = false;
@@ -55,7 +59,7 @@ public class Partie {
 	public static boolean conditionPileAdverseDesc(String entrée, int carte, Joueur j, Joueur jAdv) {
 		boolean erreur = false;
 		if (entrée.length() == 4)
-			if ((entrée.charAt(3) == '’') && (entrée.charAt(2) == 'v') && (carte > jAdv.getPileDescendante()))
+			if ( (entrée.charAt(2) == 'v') && (entrée.charAt(3) == '’') && (carte > jAdv.getPileDescendante()))
 				erreur = true;
 			else
 				erreur = false;
@@ -127,7 +131,7 @@ public class Partie {
 				}
 			}
 
-			// Vérifie que chaque 'entrée' ne fait pas plus de 4 caractères
+			// Vérifie que chaque 'entrée' ne fait pas moins de 3 caratères plus de 4 caractères
 			if (entrée.length() < 3 || entrée.length() > 4)
 				erreur = false;
 
