@@ -28,19 +28,6 @@ public class Pioche {
 	    }
 	    return;
 	}
-	/* Du coup cette méthode elle sert pas vu qu'on peut l'utiliser à partir de Java comme ça 
-	 * System.out.println(NORD.getPioche().getPiocheListe().toString())
-	public String toString() {
-		String cartesDeLaPioche = "[";
-		for (int cartes : piocheliste) {
-			if (piocheliste.get(cartes) < 59)
-				cartesDeLaPioche += String.valueOf(piocheliste.get(cartes)) + ", ";
-			else
-				cartesDeLaPioche += String.valueOf(piocheliste.get(cartes)) + "]";
-		}
-		return cartesDeLaPioche;
-	}
-	*/
 	
 	public int getCartes(int i) { 
 		return piocheliste.get(i);

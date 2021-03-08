@@ -59,7 +59,7 @@ public class Partie {
 	public static boolean conditionPileAdverseDesc(String entrée, int carte, Joueur j, Joueur jAdv) {
 		boolean erreur = false;
 		if (entrée.length() == 4)
-			if ( (entrée.charAt(2) == 'v') && (entrée.charAt(3) == '’') && (carte > jAdv.getPileDescendante()))
+			if ((entrée.charAt(2) == 'v') && (entrée.charAt(3) == '’') && (carte > jAdv.getPileDescendante()))
 				erreur = true;
 			else
 				erreur = false;
@@ -118,8 +118,13 @@ public class Partie {
 		for (String entrée : tab) {
 
 			// Vérifie si c'est un nombre
-			if (!Character.isDigit(entrée.charAt(0)) && !Character.isDigit(entrée.charAt(1)))
+			if (!Character.isDigit(entrée.charAt(0)) || !Character.isDigit(entrée.charAt(1)))
 				return erreur = false;
+			
+			// Vérifie que chaque 'entrée' ne fait pas moins de 3 caratères plus de 4 caractères
+			if (entrée.length() < 3 || entrée.length() > 4)
+				return erreur = false;
+			
 			carte = Integer.valueOf(entrée.substring(0, 2)); // La variable prend la valeur de chaque entrée
 
 			// Vérifie si les cartes sont dans la main du joueur
@@ -130,10 +135,6 @@ public class Partie {
 					break;
 				}
 			}
-
-			// Vérifie que chaque 'entrée' ne fait pas moins de 3 caratères plus de 4 caractères
-			if (entrée.length() < 3 || entrée.length() > 4)
-				erreur = false;
 
 			// Vérifie que les entrées comporte les caractère des piles
 			if (!((conditionPileAdverseAsc(entrée, carte, j, jAdv))
@@ -147,11 +148,11 @@ public class Partie {
 		
 	
 	public static boolean partieFinie(Joueur j1, Joueur j2) {
-		if(j1.getGagner()) {
+		if(j1.aGagné()) {
 			return true;
 		}
 		else 
-			if (j2.getGagner()) {
+			if (j2.aGagné()) {
 				return true;		
 		}
 			else 

@@ -52,10 +52,10 @@ public class Application {
 				afficherPilesEtMain(NORD, SUD, tourDeNord);
 				s = sc.nextLine();
 				}
-			if(NORD.getGagner()) 
-				System.out.println("partie finie, " + NORD.getNom() + " a gagné");
-			else if(SUD.getGagner())
-				System.out.println("partie finie, " + SUD.getNom() + " a gagné");
+			if(NORD.aGagné()) 
+				System.out.println("partie finie, NORD a gagné");
+			else if(SUD.aGagné())
+				System.out.println("partie finie, SUD a gagné");
 		}
 	}
 }

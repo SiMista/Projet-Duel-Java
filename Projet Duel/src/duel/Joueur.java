@@ -1,6 +1,7 @@
 package duel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Joueur {
 	private String nom;
@@ -28,11 +29,6 @@ public class Joueur {
 			} else
 				break;
 		}
-		System.out.println(nb + " cartes posées, " + i + " cartes piochées");
-
-		// Afficher la main du joueur qui vient de jouer
-		// (donc pas le bon vu qu'il faut afficher la main du joueur qui va jouer)
-		System.out.println(afficherMain());
 	}
 	
 	public void piocher(int posée, boolean b) {
@@ -57,7 +53,7 @@ public class Joueur {
 
 	}
 	
-	public boolean getGagner() {
+	public boolean aGagné() {
 		return gagner;
 	}
 
@@ -68,11 +64,12 @@ public class Joueur {
 
 	public String afficherMain() {
 		String cartesDeLaMain = "cartes " + nom + " { ";
+		Collections.sort(main);
 		for (int i = 0; i < main.size(); i++) {
 			if (i < main.size() - 1)
 				cartesDeLaMain += String.format("%02d", main.get(i)) + " ";
 			else
-				cartesDeLaMain += main.get(i) + " }";
+				cartesDeLaMain += String.format("%02d", main.get(i)) + " }";
 		}
 		return cartesDeLaMain;
 	}
@@ -116,9 +113,6 @@ public class Joueur {
 	public void setPileDescendante(int i) {
 		pileDescendante = i;
 	}
-	
-	public String getNom() {
-		return nom;
-	}
+
 
 }
