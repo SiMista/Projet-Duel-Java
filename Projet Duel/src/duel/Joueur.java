@@ -113,6 +113,4 @@ public class Joueur {
 	public void setPileDescendante(int i) {
 		pileDescendante = i;
 	}
-
-
 }
