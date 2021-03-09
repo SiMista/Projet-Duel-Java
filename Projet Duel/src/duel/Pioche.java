@@ -1,6 +1,7 @@
 package duel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class Pioche {
@@ -15,18 +16,7 @@ public class Pioche {
 			if (i > 1)
 				piocheliste.add(i);
 		}
-		mélange(piocheliste);
-	}
-
-	public void mélange(ArrayList<Integer> p) {
-		Random random = new Random();
-	    for (int i = 0; i < taille; ++i) {
-	    	int j = (int) (random.nextDouble() * (taille - i) + i);
-	        int tmp = p.get(i);
-	        p.set(i , p.get(j));
-	        p.set(j, tmp);
-	    }
-	    return;
+		Collections.shuffle(piocheliste);
 	}
 	
 	public int getCartes(int i) { 
