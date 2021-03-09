@@ -1,8 +1,5 @@
 package duel;
 
-import duel.Pioche;
-import java.util.Scanner;
-
 
 public class Partie {
 	
@@ -44,7 +41,7 @@ public class Partie {
 			return false;
 	}
 
-	public static boolean conditionPileAdverseAsc(String entrée, int carte, Joueur j, Joueur jAdv) {
+	private static boolean conditionPileAdverseAsc(String entrée, int carte, Joueur j, Joueur jAdv) {
 		boolean erreur = false;
 		if (entrée.length() == 4)
 			if ((entrée.charAt(2) == '^') && (entrée.charAt(3) == '’') && (carte < jAdv.getPileAscendante()))
@@ -56,7 +53,7 @@ public class Partie {
 		return erreur;
 	}
 
-	public static boolean conditionPileAdverseDesc(String entrée, int carte, Joueur j, Joueur jAdv) {
+	private static boolean conditionPileAdverseDesc(String entrée, int carte, Joueur j, Joueur jAdv) {
 		boolean erreur = false;
 		if (entrée.length() == 4)
 			if ((entrée.charAt(2) == 'v') && (entrée.charAt(3) == '’') && (carte > jAdv.getPileDescendante()))
@@ -68,7 +65,7 @@ public class Partie {
 		return erreur;
 	}
 
-	public static boolean conditionPileAscendante(String entrée, int carte, Joueur j, Joueur jAdv) {
+	private static boolean conditionPileAscendante(String entrée, int carte, Joueur j, Joueur jAdv) {
 		boolean erreur = false;
 		if (entrée.length() == 3)
 			if ((entrée.charAt(2) == '^') && (carte > j.getPileAscendante()) || (carte == j.getPileAscendante() - 10))
@@ -80,7 +77,7 @@ public class Partie {
 		return erreur;
 	}
 
-	public static boolean conditionPileDescendante(String entrée, int carte, Joueur j, Joueur jAdv) {
+	private static boolean conditionPileDescendante(String entrée, int carte, Joueur j, Joueur jAdv) {
 		boolean erreur = false;
 		if (entrée.length() == 3)
 			if ((entrée.charAt(2) == 'v') && (carte < j.getPileDescendante()) || (carte == j.getPileDescendante() + 10))
@@ -92,27 +89,27 @@ public class Partie {
 		return erreur;
 	}
 
-	public static void poserPileAscendante(int carte, Joueur j) {
+	private static void poserPileAscendante(int carte, Joueur j) {
 		j.setPileAscendante(carte);
 		j.retirerMain(carte);
 	}
 
-	public static void poserPileDescendante(int carte, Joueur j) {
+	private static void poserPileDescendante(int carte, Joueur j) {
 		j.setPileDescendante(carte);
 		j.retirerMain(carte);
 	}
 
-	public static void poserPileAdverseAsc(int carte, Joueur j, Joueur jAdv) {
+	private static void poserPileAdverseAsc(int carte, Joueur j, Joueur jAdv) {
 		jAdv.setPileAscendante(carte);
 		j.retirerMain(carte);
 	}
 
-	public static void poserPileAdverseDesc(int carte, Joueur j, Joueur jAdv) {
+	private static void poserPileAdverseDesc(int carte, Joueur j, Joueur jAdv) {
 		jAdv.setPileDescendante(carte);
 		j.retirerMain(carte);
 	}
 
-	public static boolean vérifSaisie(String[] tab, Joueur j, Joueur jAdv) {
+	private static boolean vérifSaisie(String[] tab, Joueur j, Joueur jAdv) {
 		boolean erreur = true;
 		int carte = 0;
 		for (String entrée : tab) {
