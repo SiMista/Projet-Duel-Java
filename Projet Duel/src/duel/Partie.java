@@ -21,10 +21,10 @@ public class Partie {
 					partieFinie(j, jAdv);
 				}
 				carte = Integer.valueOf(entrée.substring(0, 2));
-				if (conditionPileAdverseAsc(entrée, carte, j, jAdv) && !poséSurPileAdverse) {
+				if (conditionPileAdverseAsc(entrée, carte, j, jAdv)) {
 					j.poserPileAdverseAsc(carte, jAdv);
 					poséSurPileAdverse = true;
-				} else if (conditionPileAdverseDesc(entrée, carte, j, jAdv) && !poséSurPileAdverse) {
+				} else if (conditionPileAdverseDesc(entrée, carte, j, jAdv)) {
 					j.poserPileAdverseDesc(carte, jAdv);
 					poséSurPileAdverse = true;
 				} else if (conditionPileAscendante(entrée, carte, j, jAdv))
@@ -79,54 +79,70 @@ public class Partie {
 	}
 
 	private static boolean vérifSaisie(String[] tab, Joueur j, Joueur jAdv) {
-
-		boolean erreur = true;
+		boolean poséSurPileAdverse = false;
 		int tmpAsc = j.getPileAscendante();
 		int tmpDesc = j.getPileDescendante();
 		for (String entrée : tab) {
 
 			// Vérifies si la première entrée est un espace ou une tabulation
 			if (entrée == "")
-				return erreur = false;
+				return false;
 
 			// Vérifie si c'est un nombre
 			if (!Character.isDigit(entrée.charAt(0)) || !Character.isDigit(entrée.charAt(1)))
-				return erreur = false;
+				return false;
 
 			// Vérifie que chaque 'entrée' ne fait pas moins de 3 caratères plus de 4
 			// caractères
 			if (entrée.length() < 3 || entrée.length() > 4)
-				return erreur = false;
+				return false;
 
 			int carte = Integer.valueOf(entrée.substring(0, 2)); // La variable prend la valeur de chaque entrée
 
+			/* Vérifie si les cartes ne sont pas joueés en double
+			boolean doublon = false;
+			for (String test : tab) {
+				int tmp = Integer.valueOf(test.substring(0, 2));
+				if (tmp == carte)
+					if (doublon == true)
+						return false;
+				doublon = true;
+			}
+			*/
+
 			// Vérifie si les cartes sont dans la main du joueur
+			boolean erreur = false;
 			for (int carteMain : j.getMain()) {
-				erreur = false;
 				if (carteMain == carte) {
 					erreur = true;
 					break;
 				}
 			}
+			if (erreur == false)
+				return false;
 
 			// Vérifie que les entrées peuvent se poser sur des piles
 			if (conditionPileAscendante(entrée, carte, j, jAdv))
 				if (carte > tmpAsc || carte == tmpDesc - 10)
 					tmpAsc = carte;
 				else
-					return erreur = false;
+					return false;
 
 			else if (conditionPileDescendante(entrée, carte, j, jAdv))
 				if (carte < tmpDesc || carte == tmpDesc + 10)
 					tmpDesc = carte;
 				else
-					return erreur = false;
-			else if (conditionPileAdverseAsc(entrée, carte, j, jAdv) ||
-					conditionPileAdverseDesc(entrée, carte, j, jAdv))
-				
-			else return erreur = false;
+					return false;
+			else if (conditionPileAdverseAsc(entrée, carte, j, jAdv)
+					|| conditionPileAdverseAsc(entrée, carte, j, jAdv)) {
+				if (poséSurPileAdverse == true)
+					return false;
+				poséSurPileAdverse = true;
+			} else
+				return false;
 		}
-		return erreur;
+		return true;
+
 	}
 
 	public static boolean partieFinie(Joueur j1, Joueur j2) {
