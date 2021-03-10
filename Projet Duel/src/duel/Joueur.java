@@ -20,7 +20,7 @@ public class Joueur {
 		piocheInitiale(6);
 	}
 
-	public void piocheInitiale(int nb) {
+	private void piocheInitiale(int nb) {
 		int i;
 		for (i = 0; i < nb; i++) {
 			if (pioche.getTaille() > 0) {

@@ -1,6 +1,5 @@
 package appli;
 
-import duel.Pioche;
 import duel.Partie;
 import duel.Joueur;
 
@@ -19,6 +18,7 @@ public class Application {
 		}
 		System.out.print("> ");
 	}
+	
 
 	public static void main(String[] args) {
 		Joueur NORD = new Joueur("NORD");
@@ -57,5 +57,7 @@ public class Application {
 			else if(SUD.aGagné())
 				System.out.println("partie finie, SUD a gagné");
 		}
+	    sc.close();
+
 	}
 }
