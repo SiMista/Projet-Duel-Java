@@ -1,8 +1,7 @@
 package duel;
 
-
 public class Partie {
-	
+
 	public static boolean décomposeCartes(String s, Joueur j, Joueur jAdv) {
 		String[] tab = s.split("\\s+");
 		int carte = 0;
@@ -25,12 +24,10 @@ public class Partie {
 				if (conditionPileAdverseAsc(entrée, carte, j, jAdv) && !poséSurPileAdverse) {
 					j.poserPileAdverseAsc(carte, jAdv);
 					poséSurPileAdverse = true;
-				}
-				else if (conditionPileAdverseDesc(entrée, carte, j, jAdv) && !poséSurPileAdverse) {
+				} else if (conditionPileAdverseDesc(entrée, carte, j, jAdv) && !poséSurPileAdverse) {
 					j.poserPileAdverseDesc(carte, jAdv);
 					poséSurPileAdverse = true;
-				}
-				else if (conditionPileAscendante(entrée, carte, j, jAdv))
+				} else if (conditionPileAscendante(entrée, carte, j, jAdv))
 					j.poserPileAscendante(carte);
 				else if (conditionPileDescendante(entrée, carte, j, jAdv))
 					j.poserPileDescendante(carte);
@@ -46,10 +43,6 @@ public class Partie {
 		if (entrée.length() == 4)
 			if ((entrée.charAt(2) == '^') && (entrée.charAt(3) == '’') && (carte < jAdv.getPileAscendante()))
 				erreur = true;
-			else
-				erreur = false;
-		else
-			erreur = false;
 		return erreur;
 	}
 
@@ -58,10 +51,6 @@ public class Partie {
 		if (entrée.length() == 4)
 			if ((entrée.charAt(2) == 'v') && (entrée.charAt(3) == '’') && (carte > jAdv.getPileDescendante()))
 				erreur = true;
-			else
-				erreur = false;
-		else
-			erreur = false;
 		return erreur;
 	}
 
@@ -92,22 +81,24 @@ public class Partie {
 	private static boolean vérifSaisie(String[] tab, Joueur j, Joueur jAdv) {
 
 		boolean erreur = true;
-		int carte = 0;
+		int tmpAsc = j.getPileAscendante();
+		int tmpDesc = j.getPileDescendante();
 		for (String entrée : tab) {
-			
-			// SA MARCHE PAS LERREUR EST AVANT JE PENSES
-			if (entrée.charAt(0)== ' ')
+
+			// Vérifies si la première entrée est un espace ou une tabulation
+			if (entrée == "")
 				return erreur = false;
-			
+
 			// Vérifie si c'est un nombre
 			if (!Character.isDigit(entrée.charAt(0)) || !Character.isDigit(entrée.charAt(1)))
 				return erreur = false;
-			
-			// Vérifie que chaque 'entrée' ne fait pas moins de 3 caratères plus de 4 caractères
+
+			// Vérifie que chaque 'entrée' ne fait pas moins de 3 caratères plus de 4
+			// caractères
 			if (entrée.length() < 3 || entrée.length() > 4)
 				return erreur = false;
-			
-			carte = Integer.valueOf(entrée.substring(0, 2)); // La variable prend la valeur de chaque entrée
+
+			int carte = Integer.valueOf(entrée.substring(0, 2)); // La variable prend la valeur de chaque entrée
 
 			// Vérifie si les cartes sont dans la main du joueur
 			for (int carteMain : j.getMain()) {
@@ -118,26 +109,32 @@ public class Partie {
 				}
 			}
 
-			// Vérifie que les entrées comporte les caractère des piles
-			if (!((conditionPileAdverseAsc(entrée, carte, j, jAdv))
-					|| (conditionPileAdverseDesc(entrée, carte, j, jAdv))
-					|| (conditionPileAscendante(entrée, carte, j, jAdv))
-					|| (conditionPileDescendante(entrée, carte, j, jAdv))))
-				erreur = false;
+			// Vérifie que les entrées peuvent se poser sur des piles
+			if (conditionPileAscendante(entrée, carte, j, jAdv))
+				if (carte > tmpAsc || carte == tmpDesc - 10)
+					tmpAsc = carte;
+				else
+					return erreur = false;
+
+			else if (conditionPileDescendante(entrée, carte, j, jAdv))
+				if (carte < tmpDesc || carte == tmpDesc + 10)
+					tmpDesc = carte;
+				else
+					return erreur = false;
+			else if (conditionPileAdverseAsc(entrée, carte, j, jAdv) ||
+					conditionPileAdverseDesc(entrée, carte, j, jAdv))
+				
+			else return erreur = false;
 		}
 		return erreur;
 	}
-		
-	
+
 	public static boolean partieFinie(Joueur j1, Joueur j2) {
-		if(j1.aGagné()) {
+		if (j1.aGagné()) {
 			return true;
-		}
-		else 
-			if (j2.aGagné()) {
-				return true;		
-		}
-			else 
-				return false;
-		}
+		} else if (j2.aGagné()) {
+			return true;
+		} else
+			return false;
+	}
 }

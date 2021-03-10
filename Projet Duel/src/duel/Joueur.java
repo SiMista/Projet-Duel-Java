@@ -24,35 +24,31 @@ public class Joueur {
 		int i;
 		for (i = 0; i < nb; i++) {
 			if (pioche.getTaille() > 0) {
-				main.add(i, (pioche.getCartes(i)));
-				pioche.retirerCarte(i);
+				main.add(pioche.getCarte());
 			} else
 				break;
 		}
 	}
-	
-	public void piocher(int posée, boolean b) {
-		int i;
-		if (b) {
-			for (i = 0; i < posée; i++) {
-				if (pioche.getTaille() > 0) {
-					main.add(i, (pioche.getCartes(i)));
-					pioche.retirerCarte(i);
-				}
-			}
-		}
-		else {
-				for (i = 0; i < 2; i++) {
-					if (pioche.getTaille() > 0) {
-						main.add(i, (pioche.getCartes(i)));
-						pioche.retirerCarte(i);
-					}
-				}
-		}
-		System.out.println(posée + " cartes posées, " + i + " cartes piochées");
 
+	public void piocher(int posée, boolean b) {
+		int i = main.size();
+		if (b)
+			while (main.size() != 6) {
+				if (pioche.getTaille() > 0)
+					main.add(pioche.getCarte());
+				else
+					break;
+			}
+		else
+			for (int y = 0; y < 2; y++) {
+				if (pioche.getTaille() > 0)
+					main.add(pioche.getCarte());
+				else
+					break;
+			}
+		System.out.println(posée + " cartes posées, " + (main.size() - i) + " cartes piochées");
 	}
-	
+
 	public boolean aGagné() {
 		return gagner;
 	}
@@ -60,7 +56,6 @@ public class Joueur {
 	public void setPartieGagnée() {
 		gagner = true;
 	}
-
 
 	public String afficherMain() {
 		String cartesDeLaMain = "cartes " + nom + " { ";
@@ -86,26 +81,10 @@ public class Joueur {
 	public void retirerMain(int carte) {
 		for (int i = 0; i < main.size(); i++) {
 			if (main.get(i) == carte)
-			main.remove(i);
+				main.remove(i);
 		}
 	}
 
-	public Pioche getPioche() {
-		return pioche;
-	}
-
-	public ArrayList<Integer> getMain() {
-		return main;
-	}
-
-	public int getPileAscendante() {
-		return pileAscendante;
-	}
-
-	public int getPileDescendante() {
-		return pileDescendante;
-	}
-	
 	public void poserPileAscendante(int carte) {
 		pileAscendante = carte;
 		retirerMain(carte);
@@ -124,5 +103,21 @@ public class Joueur {
 	public void poserPileAdverseDesc(int carte, Joueur jAdv) {
 		jAdv.pileDescendante = carte;
 		retirerMain(carte);
+	}
+
+	public Pioche getPioche() {
+		return pioche;
+	}
+
+	public ArrayList<Integer> getMain() {
+		return main;
+	}
+
+	public int getPileAscendante() {
+		return pileAscendante;
+	}
+
+	public int getPileDescendante() {
+		return pileDescendante;
 	}
 }

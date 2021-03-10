@@ -2,7 +2,6 @@ package duel;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
 public class Pioche {
 
@@ -19,20 +18,13 @@ public class Pioche {
 		Collections.shuffle(piocheliste);
 	}
 	
-	public int getCartes(int i) { 
-		return piocheliste.get(i);
+	public int getCarte() { 
+		taille--;
+		return piocheliste.remove(0);
 	}
 	
 	public int getTaille() {
 		return taille;
 	}
 	
-	public ArrayList<Integer> getPiocheListe(){
-		return piocheliste;
-	}
-	
-	public void retirerCarte(int i) {
-		piocheliste.remove(i);
-		taille--;
-	}
 }
