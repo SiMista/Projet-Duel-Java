@@ -26,17 +26,17 @@ public class Partie {
 				}
 				carte = Integer.valueOf(entrée.substring(0, 2));
 				if (conditionPileAdverseAsc(entrée, carte, j, jAdv) && !poséSurPileAdverse) {
-					poserPileAdverseAsc(carte, j, jAdv);
+					j.poserPileAdverseAsc(carte, jAdv);
 					poséSurPileAdverse = true;
 				}
 				else if (conditionPileAdverseDesc(entrée, carte, j, jAdv) && !poséSurPileAdverse) {
-					poserPileAdverseDesc(carte, j, jAdv);
+					j.poserPileAdverseDesc(carte, jAdv);
 					poséSurPileAdverse = true;
 				}
 				else if (conditionPileAscendante(entrée, carte, j, jAdv))
-					poserPileAscendante(carte, j);
+					j.poserPileAscendante(carte);
 				else if (conditionPileDescendante(entrée, carte, j, jAdv))
-					poserPileDescendante(carte, j);
+					j.poserPileDescendante(carte);
 			}
 			j.piocher(tab.length, poséSurPileAdverse);
 			return true;
@@ -92,31 +92,15 @@ public class Partie {
 		return erreur;
 	}
 
-	public static void poserPileAscendante(int carte, Joueur j) {
-		j.setPileAscendante(carte);
-		j.retirerMain(carte);
-	}
-
-	public static void poserPileDescendante(int carte, Joueur j) {
-		j.setPileDescendante(carte);
-		j.retirerMain(carte);
-	}
-
-	public static void poserPileAdverseAsc(int carte, Joueur j, Joueur jAdv) {
-		jAdv.setPileAscendante(carte);
-		j.retirerMain(carte);
-	}
-
-	public static void poserPileAdverseDesc(int carte, Joueur j, Joueur jAdv) {
-		jAdv.setPileDescendante(carte);
-		j.retirerMain(carte);
-	}
-
 	public static boolean vérifSaisie(String[] tab, Joueur j, Joueur jAdv) {
 		boolean erreur = true;
 		int carte = 0;
 		for (String entrée : tab) {
-
+			
+			// SA MARCHE PAS LERREUR EST AVANT JE PENSES
+			if (entrée.charAt(0)== ' ')
+				return erreur = false;
+			
 			// Vérifie si c'est un nombre
 			if (!Character.isDigit(entrée.charAt(0)) || !Character.isDigit(entrée.charAt(1)))
 				return erreur = false;

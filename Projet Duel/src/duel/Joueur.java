@@ -105,12 +105,24 @@ public class Joueur {
 	public int getPileDescendante() {
 		return pileDescendante;
 	}
-
-	public void setPileAscendante(int i) {
-		pileAscendante = i;
+	
+	public void poserPileAscendante(int carte) {
+		pileAscendante = carte;
+		retirerMain(carte);
 	}
 
-	public void setPileDescendante(int i) {
-		pileDescendante = i;
+	public void poserPileDescendante(int carte) {
+		pileDescendante = carte;
+		retirerMain(carte);
+	}
+
+	public void poserPileAdverseAsc(int carte, Joueur jAdv) {
+		jAdv.pileAscendante = carte;
+		retirerMain(carte);
+	}
+
+	public void poserPileAdverseDesc(int carte, Joueur jAdv) {
+		jAdv.pileDescendante = carte;
+		retirerMain(carte);
 	}
 }
