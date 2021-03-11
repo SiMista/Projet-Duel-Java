@@ -30,6 +30,14 @@ public class Application {
 		
 		while (!Partie.partieFinie(NORD, SUD)) {
 			afficherPilesEtMain(NORD, SUD, tourDeNord);
+			if(NORD.getMain().size() == 1) {
+				SUD.setPartieGagnée();
+				break;
+			}
+			if(SUD.getMain().size() == 1) {
+				NORD.setPartieGagnée();
+				break;
+			}
 			s = sc.nextLine();
 			if (tourDeNord) {
 				valide = Partie.décomposeCartes(s, NORD, SUD);
@@ -51,7 +59,7 @@ public class Application {
 		}
 		if(NORD.aGagné()) 
 			System.out.println("partie finie, NORD a gagné");
-		else if(SUD.aGagné())
+		else
 			System.out.println("partie finie, SUD a gagné");
 	    sc.close();
 	}

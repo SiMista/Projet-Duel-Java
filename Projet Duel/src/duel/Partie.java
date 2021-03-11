@@ -81,8 +81,7 @@ public class Partie {
 			if (!Character.isDigit(entrée.charAt(0)) || !Character.isDigit(entrée.charAt(1)))
 				return false;
 
-			// Vérifie que chaque 'entrée' ne fait pas moins de 3 caratères plus de 4
-			// caractères
+			// Vérifie que chaque 'entrée' ne fait pas moins de 3 caratères plus de 4 caractères
 			if (entrée.length() < 3 || entrée.length() > 4)
 				return false;
 
@@ -103,8 +102,6 @@ public class Partie {
 				index++;
 			}
 			
-			
-
 			// Vérifie si les cartes sont dans la main du joueur
 			boolean erreur = false;
 			for (int carteMain : j.getMain()) {
