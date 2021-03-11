@@ -9,18 +9,6 @@ public class Partie {
 		boolean poséSurPileAdverse = false;
 		if (vérifSaisie(tab, j, jAdv)) {
 			for (String entrée : tab) {
-				if (tab.length < 2) {
-					jAdv.setPartieGagnée();
-					partieFinie(j, jAdv);
-				}
-				if (j.getMain().size() == 1 && j.getPioche().getTaille() == 0) {
-					jAdv.setPartieGagnée();
-					partieFinie(j, jAdv);
-				}
-				if (j.getMain().size() == 0 && j.getPioche().getTaille() == 0) {
-					j.setPartieGagnée();
-					partieFinie(j, jAdv);
-				}
 				carte = Integer.valueOf(entrée.substring(0, 2));
 				if (conditionPileAdverseAsc(entrée, carte, j, jAdv)) {
 					j.poserPileAdverseAsc(carte, jAdv);
@@ -102,6 +90,11 @@ public class Partie {
 				index++;
 			}
 			
+			// Vérifie que le coup jouer à plus
+			if (tab.length < 2) {
+				return false;
+			}
+			
 			// Vérifie si les cartes sont dans la main du joueur
 			boolean erreur = false;
 			for (int carteMain : j.getMain()) {
@@ -136,6 +129,49 @@ public class Partie {
 		return true;
 
 	}
+	
+	private static boolean vérifCartesJouables(Joueur j1, Joueur j2) {
+		int cartesJouables = 0;
+		for (int carteMain : j1.getMain()) 
+			if((carteMain > j1.getPileAscendante()) || (carteMain == j1.getPileAscendante() - 10)||
+			(carteMain < j1.getPileDescendante()) || (carteMain == j1.getPileDescendante() + 10)||
+			(carteMain < j2.getPileAscendante()) || (carteMain > j2.getPileDescendante()))
+				cartesJouables++;
+		if(cartesJouables > 1) 
+			return true;
+		return false;
+	}
+	
+	public static boolean conditionVictoire(Joueur j1, Joueur j2, boolean tourDeJ1) {
+		 if(j1.getMain().size() == 0 && tourDeJ1) {
+			j1.setPartieGagnée();
+			return true;
+		}
+		 else if(j2.getMain().size() == 0 && !tourDeJ1) {
+			j2.setPartieGagnée();
+			return true;
+		}
+		 else if(j1.getMain().size() == 1 && tourDeJ1) {
+			j2.setPartieGagnée();
+			return true;
+		}
+		else if(j2.getMain().size() == 1 && !tourDeJ1) {
+			j1.setPartieGagnée();
+			return true;
+		}
+		
+		else if(vérifCartesJouables(j1,j2) && tourDeJ1) {
+			j2.setPartieGagnée();
+			return true;
+		}
+		else if(vérifCartesJouables(j2,j1) && !tourDeJ1) {
+			j1.setPartieGagnée();
+			return true;
+		}
+		return false;
+	}
+	
+	
 
 	public static boolean partieFinie(Joueur j1, Joueur j2) {
 		if (j1.aGagné()) {

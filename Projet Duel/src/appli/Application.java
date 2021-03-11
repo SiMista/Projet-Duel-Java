@@ -30,22 +30,14 @@ public class Application {
 		
 		while (!Partie.partieFinie(NORD, SUD)) {
 			afficherPilesEtMain(NORD, SUD, tourDeNord);
-			if(NORD.getMain().size() == 1) {
-				SUD.setPartieGagnée();
+			if(Partie.conditionVictoire(NORD, SUD, tourDeNord))
 				break;
-			}
-			if(SUD.getMain().size() == 1) {
-				NORD.setPartieGagnée();
-				break;
-			}
 			s = sc.nextLine();
 			if (tourDeNord) {
 				valide = Partie.décomposeCartes(s, NORD, SUD);
-				tourDeNord=false;
 			}
 			else {
 				valide = Partie.décomposeCartes(s, SUD, NORD);
-				tourDeNord = true;
 			}
 			if (!valide)
 				while(!valide) {
@@ -56,6 +48,11 @@ public class Application {
 					else
 						valide = Partie.décomposeCartes(s, SUD, NORD);
 				}
+			
+			if (tourDeNord == true)
+				tourDeNord = false;
+			else 
+				tourDeNord = true;
 		}
 		if(NORD.aGagné()) 
 			System.out.println("partie finie, NORD a gagné");
