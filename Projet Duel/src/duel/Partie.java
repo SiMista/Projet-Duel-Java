@@ -160,11 +160,11 @@ public class Partie {
 			return true;
 		}
 		
-		else if(vérifCartesJouables(j1,j2) && tourDeJ1) {
+		else if(!vérifCartesJouables(j1,j2) && tourDeJ1) {
 			j2.setPartieGagnée();
 			return true;
 		}
-		else if(vérifCartesJouables(j2,j1) && !tourDeJ1) {
+		else if(!vérifCartesJouables(j2,j1) && !tourDeJ1) {
 			j1.setPartieGagnée();
 			return true;
 		}
