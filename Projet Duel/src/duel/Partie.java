@@ -170,8 +170,6 @@ public class Partie {
 		}
 		return false;
 	}
-	
-	
 
 	public static boolean partieFinie(Joueur j1, Joueur j2) {
 		if (j1.aGagné()) {

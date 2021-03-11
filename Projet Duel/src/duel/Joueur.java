@@ -105,10 +105,6 @@ public class Joueur {
 		retirerMain(carte);
 	}
 
-	public Pioche getPioche() {
-		return pioche;
-	}
-
 	public ArrayList<Integer> getMain() {
 		return main;
 	}
