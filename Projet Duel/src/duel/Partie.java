@@ -88,16 +88,22 @@ public class Partie {
 
 			int carte = Integer.valueOf(entrée.substring(0, 2)); // La variable prend la valeur de chaque entrée
 
-			/* Vérifie si les cartes ne sont pas joueés en double A FAIRE !!!
+			// Vérifie si les cartes ne sont pas jouées en double 
 			boolean doublon = false;
+			int[] testCartesDoublons = new int[6];
+			int index=0;
 			for (String test : tab) {
-				int tmp = Integer.valueOf(test.substring(0, 2));
-				if (tmp == carte)
-					if (doublon == true)
-						return false;
-				doublon = true;
+				testCartesDoublons[index] = Integer.valueOf(test.substring(0, 2));
+				if (index > 0)
+					for (int i = 0; i < index; ++i)
+						if(testCartesDoublons[index] == testCartesDoublons[i])
+							doublon = true;
+				if (doublon == true)
+					return false;
+				index++;
 			}
-			*/
+			
+			
 
 			// Vérifie si les cartes sont dans la main du joueur
 			boolean erreur = false;
