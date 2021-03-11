@@ -3,7 +3,8 @@ package duel;
 public class Partie {
 
 	public static boolean décomposeCartes(String s, Joueur j, Joueur jAdv) {
-		String[] tab = s.split("\\s+");
+		
+		String[] tab = s.trim().split("\\s+");
 		int carte = 0;
 		boolean poséSurPileAdverse = false;
 		if (vérifSaisie(tab, j, jAdv)) {
@@ -38,31 +39,11 @@ public class Partie {
 			return false;
 	}
 
-	private static boolean conditionPileAdverseAsc(String entrée, int carte, Joueur j, Joueur jAdv) {
-		boolean erreur = false;
-		if (entrée.length() == 4)
-			if ((entrée.charAt(2) == '^') && (entrée.charAt(3) == '’') && (carte < jAdv.getPileAscendante()))
-				erreur = true;
-		return erreur;
-	}
-
-	private static boolean conditionPileAdverseDesc(String entrée, int carte, Joueur j, Joueur jAdv) {
-		boolean erreur = false;
-		if (entrée.length() == 4)
-			if ((entrée.charAt(2) == 'v') && (entrée.charAt(3) == '’') && (carte > jAdv.getPileDescendante()))
-				erreur = true;
-		return erreur;
-	}
-
 	private static boolean conditionPileAscendante(String entrée, int carte, Joueur j, Joueur jAdv) {
 		boolean erreur = false;
 		if (entrée.length() == 3)
 			if ((entrée.charAt(2) == '^') && (carte > j.getPileAscendante()) || (carte == j.getPileAscendante() - 10))
 				erreur = true;
-			else
-				erreur = false;
-		else
-			erreur = false;
 		return erreur;
 	}
 
@@ -71,10 +52,22 @@ public class Partie {
 		if (entrée.length() == 3)
 			if ((entrée.charAt(2) == 'v') && (carte < j.getPileDescendante()) || (carte == j.getPileDescendante() + 10))
 				erreur = true;
-			else
-				erreur = false;
-		else
-			erreur = false;
+		return erreur;
+	}
+	
+	private static boolean conditionPileAdverseAsc(String entrée, int carte, Joueur j, Joueur jAdv) {
+		boolean erreur = false;
+		if (entrée.length() == 4)
+			if ((entrée.charAt(2) == '^') && (entrée.charAt(3) == '\'') && (carte < jAdv.getPileAscendante()))
+				erreur = true;
+		return erreur;
+	}
+
+	private static boolean conditionPileAdverseDesc(String entrée, int carte, Joueur j, Joueur jAdv) {
+		boolean erreur = false;
+		if (entrée.length() == 4)
+			if ((entrée.charAt(2) == 'v') && (entrée.charAt(3) == '\'') && (carte > jAdv.getPileDescendante()))
+				erreur = true;
 		return erreur;
 	}
 
@@ -83,11 +76,7 @@ public class Partie {
 		int tmpAsc = j.getPileAscendante();
 		int tmpDesc = j.getPileDescendante();
 		for (String entrée : tab) {
-
-			// Vérifies si la première entrée est un espace ou une tabulation
-			if (entrée == "")
-				return false;
-
+			
 			// Vérifie si c'est un nombre
 			if (!Character.isDigit(entrée.charAt(0)) || !Character.isDigit(entrée.charAt(1)))
 				return false;
@@ -99,7 +88,7 @@ public class Partie {
 
 			int carte = Integer.valueOf(entrée.substring(0, 2)); // La variable prend la valeur de chaque entrée
 
-			/* Vérifie si les cartes ne sont pas joueés en double
+			/* Vérifie si les cartes ne sont pas joueés en double A FAIRE !!!
 			boolean doublon = false;
 			for (String test : tab) {
 				int tmp = Integer.valueOf(test.substring(0, 2));
@@ -123,7 +112,7 @@ public class Partie {
 
 			// Vérifie que les entrées peuvent se poser sur des piles
 			if (conditionPileAscendante(entrée, carte, j, jAdv))
-				if (carte > tmpAsc || carte == tmpDesc - 10)
+				if (carte > tmpAsc || carte == tmpAsc - 10)
 					tmpAsc = carte;
 				else
 					return false;
@@ -134,7 +123,7 @@ public class Partie {
 				else
 					return false;
 			else if (conditionPileAdverseAsc(entrée, carte, j, jAdv)
-					|| conditionPileAdverseAsc(entrée, carte, j, jAdv)) {
+					|| conditionPileAdverseDesc(entrée, carte, j, jAdv)) {
 				if (poséSurPileAdverse == true)
 					return false;
 				poséSurPileAdverse = true;

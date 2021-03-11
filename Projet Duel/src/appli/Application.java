@@ -58,6 +58,5 @@ public class Application {
 				System.out.println("partie finie, SUD a gagné");
 		}
 	    sc.close();
-
 	}
 }
