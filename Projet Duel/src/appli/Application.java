@@ -48,6 +48,8 @@ public class Application {
 					else
 						valide = Partie.décomposeCartes(s, SUD, NORD);
 				}
+			//if(Partie.conditionVictoire(NORD, SUD, tourDeNord))
+				//break;
 			
 			if (tourDeNord == true)
 				tourDeNord = false;

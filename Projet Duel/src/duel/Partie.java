@@ -143,19 +143,19 @@ public class Partie {
 	}
 	
 	public static boolean conditionVictoire(Joueur j1, Joueur j2, boolean tourDeJ1) {
-		 if(j1.getMain().size() == 0 && tourDeJ1) {
+		 if(j1.getMain().size() == 0) {
 			j1.setPartieGagnée();
 			return true;
 		}
-		 else if(j2.getMain().size() == 0 && !tourDeJ1) {
+		 else if(j2.getMain().size() == 0) {
 			j2.setPartieGagnée();
 			return true;
 		}
-		 else if(j1.getMain().size() == 1 && tourDeJ1) {
+		 else if(j1.getMain().size() == 1) {
 			j2.setPartieGagnée();
 			return true;
 		}
-		else if(j2.getMain().size() == 1 && !tourDeJ1) {
+		else if(j2.getMain().size() == 1) {
 			j1.setPartieGagnée();
 			return true;
 		}

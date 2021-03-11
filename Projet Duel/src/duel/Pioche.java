@@ -9,7 +9,7 @@ public class Pioche {
 	private int taille;
 
 	public Pioche() {
-		taille = 58;
+		taille = 10;
 		piocheliste = new ArrayList<Integer>();
 		for (int i = 0; i < taille + 2; i++) {
 			if (i > 1)
