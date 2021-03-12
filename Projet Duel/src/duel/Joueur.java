@@ -73,7 +73,7 @@ public class Joueur {
 		int i = main.size();
 		// Fait piocher des cartes au joueur jusqu'à ce que sa main soit pleine.
 		if (b)
-			while (main.size() != 6) {
+			while (main.size() < 6) {
 				if (pioche.getTaille() > 0)
 					main.add(pioche.getCarte());
 				else
@@ -133,6 +133,28 @@ public class Joueur {
 		pilesJoueur += " (m" + main.size() + "p" + pioche.getTaille() + ")";
 		return pilesJoueur;
 	}
+	
+	/*
+	 * Permet de poser une carte sur une pile descendante,
+	 * Tout en retirant la carte de la main du joueur.
+	 * @param carte, la carte à poser sur la pile descendante.
+	 * @param jAdv, le joueur adverse.
+	 */
+	public void poserPileAdverseAsc(int carte, Joueur jAdv) {
+		jAdv.pileAscendante = carte;
+		retirerMain(carte);
+	}
+	
+	/*
+	 * Permet de poser une carte sur la pile descendante adverse,
+	 * Tout en retirant la carte de la main du joueur.
+	 * @param carte, la carte à poser sur la pile descendante adverse.
+	 * @param jAdv, le joueur adverse.
+	 */
+	public void poserPileAdverseDesc(int carte, Joueur jAdv) {
+		jAdv.pileDescendante = carte;
+		retirerMain(carte);
+	}
 
 	/*
 	 * Permet de poser une carte sur une pile ascendante,
@@ -153,6 +175,7 @@ public class Joueur {
 		pileDescendante = carte;
 		retirerMain(carte);
 	}
+	
 
 	/*
 	 * Permet de d'obtenir la main du joueur

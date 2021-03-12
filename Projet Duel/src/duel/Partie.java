@@ -188,11 +188,11 @@ public class Partie {
 			for (String entrée : tab) {
 				carte = Integer.valueOf(entrée.substring(0, 2));
 				if (conditionPileAdverseAsc(entrée, carte, j, jAdv)) {
-					jAdv.poserPileAscendante(carte);
+					j.poserPileAdverseAsc(carte, jAdv);
 					poséSurPileAdverse = true;
 				} 
 				else if (conditionPileAdverseDesc(entrée, carte, j, jAdv)) {
-					jAdv.poserPileDescendante(carte);
+					j.poserPileAdverseDesc(carte, jAdv);
 					poséSurPileAdverse = true;
 				} 
 				else if (conditionPileAscendante(entrée, carte, j, jAdv))
