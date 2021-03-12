@@ -10,23 +10,19 @@ public class Application {
 	private static void afficherPilesEtMain(Joueur j1, Joueur j2, boolean tourDeJ1) {
 		System.out.println(j1.afficherPiles());
 		System.out.println(j2.afficherPiles());
-		if (tourDeJ1) {
+		if (tourDeJ1)
 			System.out.println(j1.afficherMain());
-		}
-		else {
+		else 
 			System.out.println(j2.afficherMain());
-		}
 	}
 	
-
 	public static void main(String[] args) {
 		Joueur NORD = new Joueur("NORD");
 		Joueur SUD = new Joueur("SUD");
 		Scanner sc = new Scanner(System.in);
 		String s;
 		Boolean tourDeNord = true;
-		Boolean valide;
-		
+		Boolean valide;	
 		while (!Partie.partieFinie(NORD, SUD)) {
 			afficherPilesEtMain(NORD, SUD, tourDeNord);
 			if(Partie.conditionVictoire(NORD, SUD, tourDeNord))

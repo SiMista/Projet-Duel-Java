@@ -2,8 +2,7 @@ package duel;
 
 public class Partie {
 
-	public static boolean décomposeCartes(String s, Joueur j, Joueur jAdv) {
-		
+	public static boolean décomposeCartes(String s, Joueur j, Joueur jAdv) {	
 		String[] tab = s.trim().split("\\s+");
 		int carte = 0;
 		boolean poséSurPileAdverse = false;
@@ -13,10 +12,12 @@ public class Partie {
 				if (conditionPileAdverseAsc(entrée, carte, j, jAdv)) {
 					j.poserPileAdverseAsc(carte, jAdv);
 					poséSurPileAdverse = true;
-				} else if (conditionPileAdverseDesc(entrée, carte, j, jAdv)) {
+				} 
+				else if (conditionPileAdverseDesc(entrée, carte, j, jAdv)) {
 					j.poserPileAdverseDesc(carte, jAdv);
 					poséSurPileAdverse = true;
-				} else if (conditionPileAscendante(entrée, carte, j, jAdv))
+				} 
+				else if (conditionPileAscendante(entrée, carte, j, jAdv))
 					j.poserPileAscendante(carte);
 				else if (conditionPileDescendante(entrée, carte, j, jAdv))
 					j.poserPileDescendante(carte);
@@ -63,8 +64,7 @@ public class Partie {
 		boolean poséSurPileAdverse = false;
 		int tmpAsc = j.getPileAscendante();
 		int tmpDesc = j.getPileDescendante();
-		for (String entrée : tab) {
-			
+		for (String entrée : tab) {		
 			// Vérifie si c'est un nombre
 			if (!Character.isDigit(entrée.charAt(0)) || !Character.isDigit(entrée.charAt(1)))
 				return false;
@@ -91,9 +91,8 @@ public class Partie {
 			}
 			
 			// Vérifie que le coup jouer à plus
-			if (tab.length < 2) {
+			if (tab.length < 2)
 				return false;
-			}
 			
 			// Vérifie si les cartes sont dans la main du joueur
 			boolean erreur = false;
@@ -118,13 +117,15 @@ public class Partie {
 					tmpDesc = carte;
 				else
 					return false;
-			else if (conditionPileAdverseAsc(entrée, carte, j, jAdv)
-					|| conditionPileAdverseDesc(entrée, carte, j, jAdv)) {
-				if (poséSurPileAdverse == true)
-					return false;
-				poséSurPileAdverse = true;
-			} else
-				return false;
+			else 
+				if (conditionPileAdverseAsc(entrée, carte, j, jAdv)
+				|| conditionPileAdverseDesc(entrée, carte, j, jAdv)) {
+					if (poséSurPileAdverse == true)
+						return false;
+					poséSurPileAdverse = true;
+				} 	
+				else
+						return false;
 		}
 		return true;
 
@@ -172,11 +173,11 @@ public class Partie {
 	}
 
 	public static boolean partieFinie(Joueur j1, Joueur j2) {
-		if (j1.aGagné()) {
+		if (j1.aGagné())
 			return true;
-		} else if (j2.aGagné()) {
+		else if (j2.aGagné()) 
 			return true;
-		} else
+		else
 			return false;
 	}
 }
