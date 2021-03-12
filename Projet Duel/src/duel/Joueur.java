@@ -78,7 +78,7 @@ public class Joueur {
 		return pilesJoueur;
 	}
 
-	public void retirerMain(int carte) {
+	private void retirerMain(int carte) {
 		for (int i = 0; i < main.size(); i++) {
 			if (main.get(i) == carte)
 				main.remove(i);
