@@ -5,6 +5,7 @@ import java.util.Collections;
 
 /*
  * Classe dans laquelle une pioche aléatoire est construite, 
+ * avec une méthode pour obtenir sa taille et sa première carte.
  * @author DE ALMEIDA Jules & DEIVA Siméon 
  */
 public class Pioche {
