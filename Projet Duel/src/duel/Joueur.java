@@ -51,17 +51,6 @@ public class Joueur {
 		}
 	}
 	
-	/* Permet d'obtenir la carte jouée tout en la retirant de la main.
-	 * @param carte, la carte à retirer de la main.
-	 */
-	private void retirerMain(int carte) {
-		for (int i = 0; i < main.size(); i++) {
-			if (main.get(i) == carte)
-				main.remove(i);
-		}
-	}
-
-	
 	// Méthodes publiques 
 	
 	/*
@@ -121,7 +110,17 @@ public class Joueur {
 		}
 		return cartesDeLaMain;
 	}
-
+	
+	/* Permet d'obtenir la carte jouée tout en la retirant de la main.
+	 * @param carte, la carte à retirer de la main.
+	 */
+	private void retirerMain(int carte) {
+		for (int i = 0; i < main.size(); i++) {
+			if (main.get(i) == carte)
+				main.remove(i);
+		}
+	}
+	
 	/*
 	 * Permet d'obtenir les piles du joueur en chaine de caractère.
 	 * @return pilesJoueur, les piles du joueur .
