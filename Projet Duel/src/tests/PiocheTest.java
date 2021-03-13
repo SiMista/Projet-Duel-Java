@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import duel.Pioche;
 
 class PiocheTest {
-
+	
 	@Test
 	void testPioche() throws NoSuchFieldException, IllegalAccessException {
 		Pioche PIOCHE = new Pioche();

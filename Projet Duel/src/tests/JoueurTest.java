@@ -9,12 +9,18 @@ import java.lang.reflect.Field;
 
 import org.junit.jupiter.api.Test;
 
-
-
 class JoueurTest {
 	Joueur TEST = new Joueur("TEST");
 	Joueur TESTadv = new Joueur("TESTadv");
 	
+	/*
+	 * Tests invalides :
+	 * afficherMain()
+	 * retirerMain(int carte)
+	 * afficherPiles()
+	 */
+	
+	// Tests valides
 	@Test
 	void testJoueur() throws NoSuchFieldException, IllegalAccessException {
         final Field testNom = TEST.getClass().getDeclaredField("nom");
